@@ -5,7 +5,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] Vector2 direction;
     [SerializeField] KeyCode left = KeyCode.A, right = KeyCode.D;
-    [SerializeField] float gravityTimeToZero, turnspeed, minimalGravityEffect;
+    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum;
     [SerializeField] GameObject directionFinder;
     // Start is called before the first frame update
     void Start()
@@ -17,36 +17,48 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         direction = directionFinder.transform.position - transform.position;
+        InputTaker();
+        GravityTurnCalculator();
+        Movement();
+    }
+    void InputTaker()
+    {
         if (Input.GetKey(left) && Input.GetKey(right))
         {
 
         }
         else if (Input.GetKey(left))
         {
-            transform.Rotate(Vector3.forward, -turnspeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, -turnspeed * Time.deltaTime * Mathf.Clamp(momentum, 1, 3));
         }
         else if (Input.GetKey(right))
         {
-            transform.Rotate(Vector3.forward, turnspeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, turnspeed * Time.deltaTime * Mathf.Clamp(momentum, 1, 3));
         }
-        else
-        {
-
-        }
-        if (Vector2.Angle(direction, Vector2.down) < minimalGravityEffect * Time.deltaTime)
+    }
+    void GravityTurnCalculator()
+    {
+        if (Vector2.Angle(direction, Vector2.down) < minimalGravityTurnEffect * Time.deltaTime)
         {
             if (Vector2.SignedAngle(direction, Vector2.down) < 0)
             {
-                transform.Rotate(Vector3.forward, -minimalGravityEffect * Time.deltaTime);
+                transform.Rotate(Vector3.forward, -minimalGravityTurnEffect * Time.deltaTime);
             }
             else if (Vector2.SignedAngle(direction, Vector2.down) > 0)
             {
-                transform.Rotate(Vector3.forward, minimalGravityEffect * Time.deltaTime);
+                transform.Rotate(Vector3.forward, minimalGravityTurnEffect * Time.deltaTime);
             }
         }
         else
         {
-            transform.Rotate(Vector3.forward, Vector2.SignedAngle(direction, Vector2.down) / gravityTimeToZero * Time.deltaTime);
+            transform.Rotate(Vector3.forward, Vector2.SignedAngle(direction, Vector2.down) / gravityTimeToTurnZero * Time.deltaTime);
         }
+    }
+    void Movement()
+    {
+
+        transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
+
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime * - direction.y + momentum, 1, maxMomentum);
     }
 }
