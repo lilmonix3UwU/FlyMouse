@@ -48,13 +48,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1}
-  rightTurn: {x: 0.5, y: 0.87}
-  leftTurn: {x: -0.5, y: 0.87}
   left: 97
   right: 100
-  gravityTimeToZero: 3
+  gravityTimeToTurnZero: 3
   turnspeed: 60
-  minimalGravityEffect: 5
+  minimalGravityTurnEffect: 5
+  movementSpeed: 1
+  momentum: 1
+  gravityConstant: 0.2
+  momentumLossRate: 1
+  maxMomentum: 10
   directionFinder: {fileID: 2775930312170080980}
 --- !u!114 &7302221141928706469
 MonoBehaviour:
