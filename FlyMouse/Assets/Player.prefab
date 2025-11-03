@@ -51,13 +51,11 @@ MonoBehaviour:
   left: 97
   right: 100
   gravityTimeToTurnZero: 3
-  turnspeed: 60
+  turnspeed: 40
   minimalGravityTurnEffect: 5
   movementSpeed: 1
   momentum: 1
-  gravityConstant: 0.2
-  momentumLossRate: 1
-  maxMomentum: 10
+  maxMomentum: 5
   directionFinder: {fileID: 2775930312170080980}
 --- !u!114 &7302221141928706469
 MonoBehaviour:

@@ -5,7 +5,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] Vector2 direction;
     [SerializeField] KeyCode left = KeyCode.A, right = KeyCode.D;
-    [SerializeField] float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, gravityConstant, momentumLossRate, maxMomentum;
+    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum;
     [SerializeField] GameObject directionFinder;
     // Start is called before the first frame update
     void Start()
@@ -29,11 +29,11 @@ public class CharacterController : MonoBehaviour
         }
         else if (Input.GetKey(left))
         {
-            transform.Rotate(Vector3.forward, -turnspeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, -turnspeed * Time.deltaTime * Mathf.Clamp(momentum, 1, 3));
         }
         else if (Input.GetKey(right))
         {
-            transform.Rotate(Vector3.forward, turnspeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, turnspeed * Time.deltaTime * Mathf.Clamp(momentum, 1, 3));
         }
     }
     void GravityTurnCalculator()
@@ -56,22 +56,9 @@ public class CharacterController : MonoBehaviour
     }
     void Movement()
     {
-        
-        transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction;
-        Vector3 previousPosition = transform.position;
-        GravityMovement();
-        float tempMomentum = Mathf.Clamp(Mathf.Log((transform.position - previousPosition).magnitude / Time.deltaTime, 2), 1, maxMomentum);
-        if (tempMomentum > momentum)
-        {
-            momentum = tempMomentum;
-        }
-        else
-        {
-            momentum -= momentumLossRate * Time.deltaTime;
-        }
-    }
-    void GravityMovement()
-    {
-        transform.position = (Vector2)transform.position + gravityConstant * Mathf.Lerp(0.1f, 1f, Mathf.Abs(direction.y)) * Vector2.down;
+
+        transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
+
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime * - direction.y + momentum, 1, maxMomentum);
     }
 }
