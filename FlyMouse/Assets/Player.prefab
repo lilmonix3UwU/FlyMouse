@@ -52,7 +52,7 @@ MonoBehaviour:
   right: 100
   gravityTimeToTurnZero: 3
   turnspeed: 40
-  minimalGravityTurnEffect: 5
+  minimalGravityTurnEffect: 0
   movementSpeed: 1
   momentum: 1
   maxMomentum: 5
