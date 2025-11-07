@@ -8,8 +8,6 @@ public class death : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject highscoreWinMenu;
     [SerializeField] Leaderboard Leaderboard;
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -38,8 +36,4 @@ public class death : MonoBehaviour
             }
         }
     }
-
-
-
-
 }
