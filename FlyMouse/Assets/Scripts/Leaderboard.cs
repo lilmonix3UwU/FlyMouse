@@ -149,7 +149,7 @@ public class Leaderboard : MonoBehaviour
             string[] a = { save, pos };
             save = string.Join("|", a);
         }
-        save.Trim('|');
+        save.TrimStart('|');
         PlayerPrefs.SetString("leaderboard", save);
     }
 }
