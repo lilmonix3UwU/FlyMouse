@@ -22,7 +22,7 @@ public class ScoreTimer : MonoBehaviour
 
         float roundedTimer = Mathf.Round((seconds - 1) * 100) / 100;
 
-        if (roundedTimer > 60)
+        if (seconds > 60)
         {
             seconds -= 60;
             minutes++;
@@ -30,6 +30,18 @@ public class ScoreTimer : MonoBehaviour
 
         if (minutes == 0) timer.text = roundedTimer.ToString();
         if (minutes > 0) timer.text = minutes + ":" + roundedTimer.ToString();
+        /*
+        float roundedTimer = Mathf.Round((seconds - 1) * 100) / 100;
+
+        while (seconds > 60)
+        {
+            seconds -= 60;
+            minutes++;
+        }
+
+        if (minutes == 0) timer.text = roundedTimer.ToString();
+        if (minutes > 0) timer.text = minutes + ":" + roundedTimer.ToString();
+        */
     }
     public float StopTimer()
     {
