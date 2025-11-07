@@ -16,8 +16,12 @@ public class death : MonoBehaviour
             looseMenu.SetActive(true);
             gameObject.GetComponent<CharacterController>().enabled = false;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("Cheese"))
         {
+            gameObject.GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<CameraFollowScript>().enabled = false;
             gameObject.GetComponent<CharacterController>().turnspeed = 0;
             winMenu.SetActive(true);

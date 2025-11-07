@@ -6031,7 +6031,7 @@ MonoBehaviour:
   invisCooldown: 0.8
   visCooldown: 0.8
   animationTime: 2
-  fadeTime: 2
+  fadeTime: 1
   fade: {fileID: 1450409061}
   background: {fileID: 1194142978}
 --- !u!1 &2124753898
