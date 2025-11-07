@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
-    [SerializeField] string emptyLeaderboard = "name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0";
+    // Leaderboard Head-Decryption: Name;Score;Position|
+    [SerializeField] string emptyLeaderboard = "NUL;0;1|NUL;0;2|NUL;0;3|NUL;0;4|NUL;0;5|NUL;0;6|NUL;0;7|NUL;0;8|NUL;0;9|NUL;0;10";
     [SerializeField] List<LeaderboardPosition> positions = new();
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,6 @@ public class Leaderboard : MonoBehaviour
         foreach (string line in splitLeaderboard)
         {
             string[] stats = line.Split(";");
-            stats[0].Remove(0, 5);
-            stats[1].Remove(0, 6);
-            stats[2].Remove(0, 9);
             positions.Add(new LeaderboardPosition(stats[0], float.Parse(stats[1]), float.Parse(stats[2])));
         }
         foreach (LeaderboardPosition position in positions)
@@ -76,9 +74,58 @@ public class Leaderboard : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool ScoreChecker(float score)
     {
-
+        for (int i = 0; i < positions.Count; i++)
+        {
+            if (positions[i].score < score)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void Sort()
+    {
+        List<LeaderboardPosition> temp = new();
+        temp.Add(new("иии", -1, 0));
+        LeaderboardPosition t = new("NUL", 10000000000, 0);
+        for (int u = 0; u < 10; u++)
+        {
+            for (int i = 0; i < positions.Count; i++)
+            {
+                if (positions[i].score < t.score && positions[i].score > temp.Last().score)
+                {
+                     t = positions[i];
+                }
+            }
+            if (temp[0].name == "иии")
+            {
+                temp.Remove(temp[0]);
+            }
+            t.position = u + 1;
+            temp.Add(t);
+        }
+        positions = temp;
+    }
+    public void NewScore(string name, float score)
+    {
+        Sort();
+        positions[9] = new LeaderboardPosition(name, score, 10);
+        Sort();
+        SaveLeaderboard();
+    }
+    public void SaveLeaderboard()
+    {
+        string save = string.Empty;
+        for (int i = 0; i < positions.Count; i++)
+        {
+            string[] stats = { positions[i].name, positions[i].score.ToString(), positions[i].position.ToString() };
+            string pos = string.Join(";", stats);
+            string[] a = {save, pos};
+            save = string.Join("|", a);
+        }
+        save.Trim('|');
+        PlayerPrefs.SetString("leaderboard", save);
     }
 }
