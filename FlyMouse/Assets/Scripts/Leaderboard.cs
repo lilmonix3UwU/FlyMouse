@@ -147,9 +147,9 @@ public class Leaderboard : MonoBehaviour
             string[] stats = { positions[i].name, positions[i].score.ToString(), positions[i].position.ToString() };
             string pos = string.Join(";", stats);
             string[] a = { save, pos };
-            save = string.Join("|", a);
+            save = string.Join('|', a);
         }
-        save.TrimStart('|');
+        save.Remove(0, 1);
         PlayerPrefs.SetString("leaderboard", save);
     }
 }
