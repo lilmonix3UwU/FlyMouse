@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -97,9 +98,11 @@ public class Leaderboard : MonoBehaviour
     }
     public void Sort()
     {
-        List<LeaderboardPosition> temp = new();
-        temp.Add(new("иии", -1, 0));
-        LeaderboardPosition t = new("???", 10000000000, 0);
+        List<LeaderboardPosition> temp = new()
+        {
+            new("иии", -1, 0)
+        };
+        LeaderboardPosition t = new("NUL", 10000000000, 0);
         for (int u = 0; u < 10; u++)
         {
             for (int i = 0; i < positions.Count; i++)
@@ -109,7 +112,7 @@ public class Leaderboard : MonoBehaviour
                     t = positions[i];
                 }
             }
-            if (temp[0].name == "???")
+            if (temp[0].name == "иии")
             {
                 temp.Remove(temp[0]);
             }
@@ -117,6 +120,17 @@ public class Leaderboard : MonoBehaviour
             temp.Add(t);
         }
         positions = temp;
+    }
+    public bool CheckIfHighScore(float score)
+    {
+        if (score > positions[9].score)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void NewScore(string name, float score)
     {
