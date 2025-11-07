@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,6 @@ public class Leaderboard : MonoBehaviour
 {
     [SerializeField] string emptyLeaderboard = "name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0|name:0;score:0;position:0";
     [SerializeField] List<LeaderboardPosition> positions = new();
-    [SerializeField] Text[] positionSpots;
-    [SerializeField] string betweenSpace = "                                            ";
     // Start is called before the first frame update
     void Start()
     {
@@ -32,34 +31,44 @@ public class Leaderboard : MonoBehaviour
                 case 0:
                     break;
                 case 1:
-                    positionSpots[0].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(1).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(1).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 2:
-                    positionSpots[1].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(2).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(2).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 3:
-                    positionSpots[2].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(3).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(3).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 4:
-                    positionSpots[3].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(4).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(4).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 5:
-                    positionSpots[4].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(5).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(5).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 6:
-                    positionSpots[5].text = position.position + betweenSpace + position.name + betweenSpace   + position.score;
+                    transform.GetChild(6).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(6).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 7:
-                    positionSpots[6].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(7).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(7).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 8:
-                    positionSpots[7].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(8).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(8).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 9:
-                    positionSpots[8].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(9).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(9).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
                 case 10:
-                    positionSpots[9].text = position.position + betweenSpace + position.name + betweenSpace + position.score;
+                    transform.GetChild(10).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
+                    transform.GetChild(10).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
                     break;
             }
         }
