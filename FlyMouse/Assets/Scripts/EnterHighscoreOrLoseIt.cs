@@ -110,7 +110,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 {
                     finalName = nameTextBoxes[0].text + nameTextBoxes[1].text + nameTextBoxes[2].text;
                     Leaderboard.NewScore(finalName, death.Time);
-
+                    lastFade = true;
                 }
             }
 
