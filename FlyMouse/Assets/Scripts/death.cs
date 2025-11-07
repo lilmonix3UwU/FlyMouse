@@ -22,7 +22,7 @@ public class death : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cheese"))
         {
-            if (!Leaderboard.CheckIfHighScore(10))
+            if (!Leaderboard.CheckIfHighScore(ScoreTimer.Instance.StopTime))
             {
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 gameObject.GetComponent<CameraFollowScript>().enabled = false;
@@ -31,7 +31,10 @@ public class death : MonoBehaviour
             }
             else
             {
-
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                gameObject.GetComponent<CameraFollowScript>().enabled = false;
+                gameObject.GetComponent<CharacterController>().turnspeed = 0;
+                highscoreWinMenu.SetActive(true);
             }
         }
     }
