@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -29,44 +30,54 @@ public class Leaderboard : MonoBehaviour
                 case 0:
                     break;
                 case 1:
-                    transform.GetChild(1).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(1).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 2:
-                    transform.GetChild(2).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(2).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 3:
-                    transform.GetChild(3).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(3).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 4:
-                    transform.GetChild(4).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(4).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 5:
-                    transform.GetChild(5).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(5).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 6:
-                    transform.GetChild(6).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(6).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 7:
-                    transform.GetChild(7).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(7).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 8:
-                    transform.GetChild(8).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(8).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 9:
-                    transform.GetChild(9).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(9).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
                 case 10:
-                    transform.GetChild(10).GetChild(1).gameObject.GetComponent<TextMeshPro>().text = position.name;
-                    transform.GetChild(10).GetChild(2).gameObject.GetComponent<TextMeshPro>().text = position.score.ToString();
+                    transform.GetChild((int)position.position).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = position.position.ToString();
+                    transform.GetChild((int)position.position).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = position.name;
+                    transform.GetChild((int)position.position).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = position.score.ToString();
                     break;
             }
         }
@@ -87,8 +98,10 @@ public class Leaderboard : MonoBehaviour
     }
     public void Sort()
     {
-        List<LeaderboardPosition> temp = new();
-        temp.Add(new("иии", -1, 0));
+        List<LeaderboardPosition> temp = new()
+        {
+            new("иии", -1, 0)
+        };
         LeaderboardPosition t = new("NUL", 10000000000, 0);
         for (int u = 0; u < 10; u++)
         {
@@ -96,7 +109,7 @@ public class Leaderboard : MonoBehaviour
             {
                 if (positions[i].score < t.score && positions[i].score > temp.Last().score)
                 {
-                     t = positions[i];
+                    t = positions[i];
                 }
             }
             if (temp[0].name == "иии")
@@ -107,6 +120,17 @@ public class Leaderboard : MonoBehaviour
             temp.Add(t);
         }
         positions = temp;
+    }
+    public bool CheckIfHighScore(float score)
+    {
+        if (score > positions[9].score)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void NewScore(string name, float score)
     {
@@ -122,7 +146,7 @@ public class Leaderboard : MonoBehaviour
         {
             string[] stats = { positions[i].name, positions[i].score.ToString(), positions[i].position.ToString() };
             string pos = string.Join(";", stats);
-            string[] a = {save, pos};
+            string[] a = { save, pos };
             save = string.Join("|", a);
         }
         save.Trim('|');

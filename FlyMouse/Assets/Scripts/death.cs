@@ -7,8 +7,7 @@ public class death : MonoBehaviour
     [SerializeField] GameObject looseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject highscoreWinMenu;
-
-
+    [SerializeField] Leaderboard Leaderboard;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -21,14 +20,20 @@ public class death : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cheese"))
         {
-            gameObject.GetComponent<Collider2D>().enabled = false;
-            gameObject.GetComponent<CameraFollowScript>().enabled = false;
-            gameObject.GetComponent<CharacterController>().turnspeed = 0;
-            winMenu.SetActive(true);
+            if (!Leaderboard.CheckIfHighScore(ScoreTimer.Instance.StopTime))
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                gameObject.GetComponent<CameraFollowScript>().enabled = false;
+                gameObject.GetComponent<CharacterController>().turnspeed = 0;
+                winMenu.SetActive(true);
+            }
+            else
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                gameObject.GetComponent<CameraFollowScript>().enabled = false;
+                gameObject.GetComponent<CharacterController>().turnspeed = 0;
+                highscoreWinMenu.SetActive(true);
+            }
         }
     }
-
-
-
-
 }
