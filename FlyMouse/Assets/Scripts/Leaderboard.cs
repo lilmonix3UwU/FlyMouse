@@ -123,7 +123,7 @@ public class Leaderboard : MonoBehaviour
     }
     public bool CheckIfHighScore(float score)
     {
-        if (score > positions[9].score)
+        if (score < positions[9].score)
         {
             return true;
         }
