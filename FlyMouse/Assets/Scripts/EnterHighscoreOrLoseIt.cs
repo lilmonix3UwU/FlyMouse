@@ -30,7 +30,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
     [SerializeField] float spacing;
     [SerializeField] Leaderboard Leaderboard;
     [SerializeField] death death;
-
+    private bool lastFade = false;
     private void Start()
     {
         currentFadeTime = fadeTime;
@@ -54,7 +54,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || (timer <= 0)) clicked = true;
-            
+
             if (clicked)
             {
                 gameObject.GetComponent<TMP_Text>().enabled = false;
@@ -81,7 +81,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 timer -= Time.deltaTime;
             }
         }
-        else
+        else if (!lastFade)
         {
             if (!fadeInDone)
             {
@@ -100,12 +100,6 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 if (currentLetter == 26) currentLetter = 0;
                 nameTextBoxes[currentTextBox].text = alphabet[currentLetter];
             }
-            
-
-
-
-
-
 
             if (Input.GetKeyDown(KeyCode.D))
             {
@@ -116,14 +110,20 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 {
                     finalName = nameTextBoxes[0].text + nameTextBoxes[1].text + nameTextBoxes[2].text;
                     Leaderboard.NewScore(finalName, death.Time);
+
                 }
             }
 
-
-
-
-
-
+        }
+        else if (lastFade)
+        {
+            currentFadeTime -= Time.deltaTime;
+            float alpha = 1 - Mathf.InverseLerp(0, fadeTime, currentFadeTime);
+            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+            if (currentFadeTime <= 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
         }
     }
 }
