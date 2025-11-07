@@ -29,6 +29,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
     private string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     [SerializeField] float spacing;
     [SerializeField] Leaderboard Leaderboard;
+    [SerializeField] death death;
 
     private void Start()
     {
@@ -114,7 +115,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 else
                 {
                     finalName = nameTextBoxes[0].text + nameTextBoxes[1].text + nameTextBoxes[2].text;
-                    
+                    Leaderboard.NewScore(finalName, death.Time);
                 }
             }
 
