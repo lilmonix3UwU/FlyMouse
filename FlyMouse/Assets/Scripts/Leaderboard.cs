@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Leaderboard : MonoBehaviour
 {
     // Leaderboard Head-Decryption: Name;Score;Position|
-    [SerializeField] string emptyLeaderboard = "NUL;300;1|NUL;300;2|NUL;300;3|NUL;300;4|NUL;300;5|NUL;300;6|NUL;300;7|NUL;300;8|NUL;300;9|NUL;300;10";
+    string emptyLeaderboard = "NUL;300;1|NUL;300;2|NUL;300;3|NUL;300;4|NUL;300;5|NUL;300;6|NUL;300;7|NUL;300;8|NUL;300;9|NUL;300;10";
     [SerializeField] List<LeaderboardPosition> positions = new();
     // Start is called before the first frame update
     void Start()
