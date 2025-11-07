@@ -28,6 +28,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
     private int currentLetter = 0;
     private string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     [SerializeField] float spacing;
+    [SerializeField] Leaderboard Leaderboard;
 
     private void Start()
     {
@@ -71,7 +72,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 }
             }
 
-            text.text = "if you dont do it within " + Mathf.Ceil(timer) + " seconds it wont get saved";
+            text.text = "if you don't do it within " + Mathf.Ceil(timer) + " seconds it won't get saved";
 
             if (!clicked)
             {
@@ -113,6 +114,7 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 else
                 {
                     finalName = nameTextBoxes[0].text + nameTextBoxes[1].text + nameTextBoxes[2].text;
+                    Lead
                 }
             }
 

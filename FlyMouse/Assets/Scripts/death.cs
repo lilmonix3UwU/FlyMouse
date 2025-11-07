@@ -8,6 +8,7 @@ public class death : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject highscoreWinMenu;
     [SerializeField] Leaderboard Leaderboard;
+    public float Time;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -20,7 +21,7 @@ public class death : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cheese"))
         {
-            if (!Leaderboard.CheckIfHighScore(ScoreTimer.Instance.StopTime))
+            if (!Leaderboard.CheckIfHighScore(ScoreTimer.instance.StopTimer()))
             {
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 gameObject.GetComponent<CameraFollowScript>().enabled = false;
