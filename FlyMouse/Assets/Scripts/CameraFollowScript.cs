@@ -13,6 +13,6 @@ public class CameraFollowScript : MonoBehaviour
     void Update()
     {
         cam.transform.position = transform.position;
-        cam.transform.position += new Vector3(0, 0, -10);
+        cam.transform.position += new Vector3(0, -2.5f, -10);
     }
 }
