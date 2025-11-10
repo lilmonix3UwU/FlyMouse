@@ -109,11 +109,17 @@ public class EnterHighscoreOrLoseIt : MonoBehaviour
                 else
                 {
                     finalName = nameTextBoxes[0].text + nameTextBoxes[1].text + nameTextBoxes[2].text;
-                    Leaderboard.NewScore(finalName, death.Time);
-                    lastFade = true;
+                    if (Leaderboard.NewScore(finalName, death.Time))
+                    {
+                        // highscore was better than previous
+                        lastFade = true;
+                    }
+                    else
+                    {
+                        // highscore was worse than previous... maybe add a screen at some point to tell it to the player.
+                    }
                 }
             }
-
         }
         else if (lastFade)
         {
