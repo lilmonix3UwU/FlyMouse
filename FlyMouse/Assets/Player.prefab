@@ -158,7 +158,7 @@ MonoBehaviour:
   movementSpeed: 2
   momentum: 1
   maxMomentum: 8
-  minMomentum: -5
+  minMomentum: -1
   directionFinder: {fileID: 5017319624872975236}
 --- !u!114 &1937810799036132573
 MonoBehaviour:

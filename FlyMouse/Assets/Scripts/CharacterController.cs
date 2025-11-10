@@ -56,12 +56,10 @@ public class CharacterController : MonoBehaviour
     }
     void Movement()
     {
-        int constant = 1;
         transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
-        if (direction.y > 0)
+        if (direction.y < 0.25f && direction.y > -0.25f)
         {
-            constant = -1;
         }
-        momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * Mathf.Pow(direction.y,2) * constant + momentum, minMomentum, maxMomentum);
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * -direction.y * Mathf.Pow(direction.y, 2) - Mathf.Lerp(0f, 1f, Mathf.Abs(direction.x)) * Time.deltaTime * Mathf.Pow(direction.x,2) + momentum, minMomentum, maxMomentum);
     }
 }
