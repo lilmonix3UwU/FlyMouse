@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public class LeaderboardPosition
 {
@@ -13,5 +11,23 @@ public class LeaderboardPosition
         this.name = name;
         this.score = score;
         this.position = position;
+    }
+    public string ScoreTimed()
+    {
+        if (name == "N/A")
+        {
+            return "N/A";
+        }
+        float scoreSeconds = score - 1;
+        int minutes = (int)Math.Floor(scoreSeconds / 60);
+        scoreSeconds -= minutes * 60;
+        if (minutes == 0)
+        {
+            return Math.Round(scoreSeconds, 2).ToString()+"s";
+        }
+        else
+        {
+            return minutes.ToString() + " : " + Math.Round(scoreSeconds, 2).ToString()+"s";
+        }
     }
 }
