@@ -60,6 +60,6 @@ public class CharacterController : MonoBehaviour
         if (direction.y < 0.25f && direction.y > -0.25f)
         {
         }
-        momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * -direction.y * Mathf.Pow(direction.y, 2) - Mathf.Lerp(0f, 0.5f, Mathf.Abs(direction.x)) * Time.deltaTime * Mathf.Pow(direction.x,2) + momentum, minMomentum, maxMomentum);
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * -direction.y * Mathf.Pow(direction.y, 2) - Mathf.Lerp(0f, 0.5f, Mathf.Abs(direction.x)) * Time.deltaTime * Mathf.Pow(direction.x,2) + Mathf.Abs(momentum), minMomentum, maxMomentum);
     }
 }
