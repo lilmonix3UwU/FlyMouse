@@ -56,7 +56,7 @@ public class CharacterController : MonoBehaviour
     }
     void Movement()
     {
-        transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
+        transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime;
         if (direction.y < 0.25f && direction.y > -0.25f)
         {
         }
