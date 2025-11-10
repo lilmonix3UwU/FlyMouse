@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 13c2292b2b1f27d45b3c7341eb3556a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &5321691894188657427
 MonoBehaviour:
@@ -112,9 +112,10 @@ GameObject:
   - component: {fileID: 5709070171140458147}
   - component: {fileID: 258311659006245461}
   - component: {fileID: 1540665054019794356}
+  - component: {fileID: 1783786395818464406}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,12 +152,12 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   left: 97
   right: 100
-  gravityTimeToTurnZero: 3
+  gravityTimeToTurnZero: 1
   turnspeed: 40
-  minimalGravityTurnEffect: 0
-  movementSpeed: 1
+  minimalGravityTurnEffect: 2
+  movementSpeed: 2
   momentum: 1
-  maxMomentum: 5
+  maxMomentum: 8
   minMomentum: -5
   directionFinder: {fileID: 5017319624872975236}
 --- !u!114 &1937810799036132573
@@ -261,11 +262,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.15497705, y: 0.40146792}
-      - {x: -0.14945108, y: 0.40520963}
+    - - {x: 0.12518296, y: 0.39000866}
+      - {x: -0.117365114, y: 0.3868748}
       - {x: -0.03200537, y: -0.4830308}
       - {x: 0.03200549, y: -0.48837477}
   m_UseDelaunayMesh: 0
+--- !u!114 &1783786395818464406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640359865217857815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4d15b4c1730d84baa4a6d14bd29d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 0}
 --- !u!1 &5017319624872975236
 GameObject:
   m_ObjectHideFlags: 0
