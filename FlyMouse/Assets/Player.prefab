@@ -157,6 +157,7 @@ MonoBehaviour:
   movementSpeed: 1
   momentum: 1
   maxMomentum: 5
+  minMomentum: -5
   directionFinder: {fileID: 5017319624872975236}
 --- !u!114 &1937810799036132573
 MonoBehaviour:
@@ -211,7 +212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   looseMenu: {fileID: 0}
   winMenu: {fileID: 0}
+  winMenuTime: {fileID: 0}
   highscoreWinMenu: {fileID: 0}
+  highscoreWinMenuTime: {fileID: 0}
+  Leaderboard: {fileID: 0}
+  Time: 0
 --- !u!60 &1540665054019794356
 PolygonCollider2D:
   m_ObjectHideFlags: 0

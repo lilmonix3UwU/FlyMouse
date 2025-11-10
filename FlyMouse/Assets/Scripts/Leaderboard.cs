@@ -12,17 +12,29 @@ public class Leaderboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // sets the leaderboard if it's empty
         if (!PlayerPrefs.HasKey("leaderboard"))
         {
             PlayerPrefs.SetString("leaderboard", emptyLeaderboard);
         }
+        // takes leaderboard from disk
         string leaderboard = PlayerPrefs.GetString("leaderboard");
+        // splits the leaderboard into each of the positions
         string[] splitLeaderboard = leaderboard.Split('|');
+        // creates a LeaderboardPosition object for each position on the leaderboard
         foreach (string line in splitLeaderboard)
         {
+            // removes the empty string in the start
+            if (line == string.Empty)
+            {
+                continue;
+            }
+            // splits the information into an array
             string[] stats = line.Split(";");
+            // makes an object from the information
             positions.Add(new LeaderboardPosition(stats[0], float.Parse(stats[1]), float.Parse(stats[2])));
         }
+        // shows the positions correctly on the leaderboard
         foreach (LeaderboardPosition position in positions)
         {
             switch (position.position)
@@ -84,30 +96,23 @@ public class Leaderboard : MonoBehaviour
 
 
     }
-
-    public bool ScoreChecker(float score)
+    /// <summary>
+    /// sorts the leaderboard positions, so the best score is in 1st rank.
+    /// </summary>
+    private void Sort()
     {
-        for (int i = 0; i < positions.Count; i++)
-        {
-            if (positions[i].score < score)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public void Sort()
-    {
+        List<string> names = new();
         List<LeaderboardPosition> temp = new()
         {
             new("иии", -1, 0)
         };
-        LeaderboardPosition t = new("NUL", 10000000000, 0);
+        
         for (int u = 0; u < 10; u++)
         {
+            LeaderboardPosition t = new("NUL", 10000000000, 0);
             for (int i = 0; i < positions.Count; i++)
             {
-                if (positions[i].score < t.score && positions[i].score > temp.Last().score)
+                if (positions[i].score < t.score && positions[i].score > temp.Last().score && !names.Contains(positions[i].name))
                 {
                     t = positions[i];
                 }
@@ -116,11 +121,17 @@ public class Leaderboard : MonoBehaviour
             {
                 temp.Remove(temp[0]);
             }
+            names.Add(t.name);
             t.position = u + 1;
             temp.Add(t);
         }
         positions = temp;
     }
+    /// <summary>
+    /// checks if the given score would reach top 10, if so it returns true, else it returns false.
+    /// </summary>
+    /// <param name="score"></param>
+    /// <returns></returns>
     public bool CheckIfHighScore(float score)
     {
         if (score < positions[9].score)
@@ -132,6 +143,11 @@ public class Leaderboard : MonoBehaviour
             return false;
         }
     }
+    /// <summary>
+    /// creates a new score position on the leaderboard with the given parameters.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="score"></param>
     public void NewScore(string name, float score)
     {
         Sort();
@@ -139,6 +155,9 @@ public class Leaderboard : MonoBehaviour
         Sort();
         SaveLeaderboard();
     }
+    /// <summary>
+    /// saves the leaderboard to the disk.
+    /// </summary>
     public void SaveLeaderboard()
     {
         string save = string.Empty;

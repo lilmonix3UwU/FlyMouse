@@ -5,7 +5,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] Vector2 direction;
     [SerializeField] KeyCode left = KeyCode.A, right = KeyCode.D;
-    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum;
+    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum, minMomentum;
     [SerializeField] GameObject directionFinder;
     // Start is called before the first frame update
     void Start()
@@ -59,6 +59,6 @@ public class CharacterController : MonoBehaviour
 
         transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
 
-        momentum = Mathf.Clamp(Mathf.Lerp(0f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime * - direction.y + momentum, 1, maxMomentum);
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime * - direction.y + momentum, minMomentum, maxMomentum);
     }
 }
