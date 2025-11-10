@@ -152,7 +152,7 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   left: 97
   right: 100
-  gravityTimeToTurnZero: 1
+  gravityTimeToTurnZero: 5
   turnspeed: 40
   minimalGravityTurnEffect: 2
   movementSpeed: 2
