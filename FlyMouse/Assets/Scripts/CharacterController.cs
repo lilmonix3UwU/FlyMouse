@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-
+    // ændre momentum til at aftage hurtigere, og gør den exponential.
     [SerializeField] Vector2 direction;
     [SerializeField] KeyCode left = KeyCode.A, right = KeyCode.D;
     public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum, minMomentum;
@@ -56,9 +56,10 @@ public class CharacterController : MonoBehaviour
     }
     void Movement()
     {
-
         transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 2, Mathf.Abs(direction.y)) * Time.deltaTime;
-
-        momentum = Mathf.Clamp(Mathf.Lerp(0f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime * - direction.y + momentum, minMomentum, maxMomentum);
+        if (direction.y < 0.25f && direction.y > -0.25f)
+        {
+        }
+        momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * -direction.y * Mathf.Pow(direction.y, 2) - Mathf.Lerp(0f, 1f, Mathf.Abs(direction.x)) * Time.deltaTime * Mathf.Pow(direction.x,2) + momentum, minMomentum, maxMomentum);
     }
 }

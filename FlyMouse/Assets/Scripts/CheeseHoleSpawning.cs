@@ -13,8 +13,8 @@ public class CheeseHoleSpawning : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cheeseHole.transform.position = new Vector2(collision.transform.position.x, cheeseHole.transform.position.y);
-            if (cheeseHole.transform.position.x < -3.5f) cheeseHole.transform.position = new Vector2(-3.5f, cheeseHole.transform.position.y);
-            if (cheeseHole.transform.position.x > 3.5f) cheeseHole.transform.position = new Vector2(3.5f, cheeseHole.transform.position.y);
+            if (cheeseHole.transform.position.x < (transform.position.x - 3.5f)) cheeseHole.transform.position = new Vector2((transform.position.x - 3.5f), cheeseHole.transform.position.y);
+            if (cheeseHole.transform.position.x > (transform.position.x + 3.5f)) cheeseHole.transform.position = new Vector2((transform.position.x + 3.5f), cheeseHole.transform.position.y);
             cheeseHole.SetActive(true);
         }
     }

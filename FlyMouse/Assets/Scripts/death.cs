@@ -12,6 +12,7 @@ public class death : MonoBehaviour
     [SerializeField] TMP_Text highscoreWinMenuTime;
     [SerializeField] Leaderboard Leaderboard;
     public float Time;
+    private int minutes = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -32,7 +33,16 @@ public class death : MonoBehaviour
                 gameObject.GetComponent<CameraFollowScript>().enabled = false;
                 gameObject.GetComponent<CharacterController>().turnspeed = 0;
                 highscoreWinMenu.SetActive(true);
-                highscoreWinMenuTime.text = "And you got a HIGHSCORE in\r\nthe top 10 of: " + Time.ToString();
+                float roundedTimer = Mathf.Round((Time - 1) * 100) / 100;
+
+                while (roundedTimer > 60)
+                {
+                    roundedTimer -= 60;
+                    minutes++;
+                }
+
+                if (minutes == 0) highscoreWinMenuTime.text = "And you got a HIGHSCORE in\r\nthe top 10 of: " + roundedTimer.ToString();
+                if (minutes > 0) highscoreWinMenuTime.text = "And you got a HIGHSCORE in\r\nthe top 10 of: " + minutes + ":" + roundedTimer.ToString();
             }
             else
             {
@@ -40,7 +50,16 @@ public class death : MonoBehaviour
                 gameObject.GetComponent<CameraFollowScript>().enabled = false;
                 gameObject.GetComponent<CharacterController>().turnspeed = 0;
                 winMenu.SetActive(true);
-                winMenuTime.text = Time.ToString();
+                float roundedTimer = Mathf.Round((Time - 1) * 100) / 100;
+
+                while (roundedTimer > 60)
+                {
+                    roundedTimer -= 60;
+                    minutes++;
+                }
+
+                if (minutes == 0) winMenuTime.text = "but you didn't get a highscore.\r\nyou got a time of: " + roundedTimer.ToString();
+                if (minutes > 0) winMenuTime.text = "but you didn't get a highscore.\r\nyou got a time of: " + minutes + ":" + roundedTimer.ToString();
             }
         }
     }

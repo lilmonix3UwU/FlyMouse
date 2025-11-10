@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -106,7 +105,7 @@ public class Leaderboard : MonoBehaviour
         {
             new("иии", -1, 0)
         };
-        
+
         for (int u = 0; u < 10; u++)
         {
             LeaderboardPosition t = new("NUL", 10000000000, 0);
@@ -148,12 +147,38 @@ public class Leaderboard : MonoBehaviour
     /// </summary>
     /// <param name="name"></param>
     /// <param name="score"></param>
-    public void NewScore(string name, float score)
+    public bool NewScore(string name, float score)
     {
         Sort();
-        positions[9] = new LeaderboardPosition(name, score, 10);
-        Sort();
-        SaveLeaderboard();
+        int indexToReplace = 9;
+        foreach (LeaderboardPosition position in positions)
+        {
+            if (position.name == name)
+            {
+                if (position.score > score)
+                {
+                    indexToReplace = (int)position.position - 1;
+                    break;
+                }
+                else
+                {
+                    indexToReplace = -1;
+                }
+            }
+        }
+        if (indexToReplace == -1)
+        {
+            // score is not higher than the already listed score under same name.
+            return false;
+        }
+        else
+        {
+            positions[indexToReplace] = new LeaderboardPosition(name, score, indexToReplace + 1);
+            Sort();
+            SaveLeaderboard();
+            return true;
+        }
+
     }
     /// <summary>
     /// saves the leaderboard to the disk.

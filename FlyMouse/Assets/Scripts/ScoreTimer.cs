@@ -33,9 +33,9 @@ public class ScoreTimer : MonoBehaviour
         /*
         float roundedTimer = Mathf.Round((seconds - 1) * 100) / 100;
 
-        while (seconds > 60)
+        while (roundedTimer > 60)
         {
-            seconds -= 60;
+            roundedTimer -= 60;
             minutes++;
         }
 
