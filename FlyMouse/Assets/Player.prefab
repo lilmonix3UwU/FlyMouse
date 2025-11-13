@@ -225,6 +225,7 @@ MonoBehaviour:
   highscoreWinMenu: {fileID: 0}
   highscoreWinMenuTime: {fileID: 0}
   Leaderboard: {fileID: 0}
+  Wind: {fileID: -1071835423503631866}
   Time: 0
 --- !u!60 &1540665054019794356
 PolygonCollider2D:

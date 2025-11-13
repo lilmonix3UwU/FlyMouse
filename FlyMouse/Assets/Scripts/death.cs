@@ -11,12 +11,14 @@ public class death : MonoBehaviour
     [SerializeField] GameObject highscoreWinMenu;
     [SerializeField] TMP_Text highscoreWinMenuTime;
     [SerializeField] Leaderboard Leaderboard;
+    [SerializeField] AudioSource Wind;
     public float Time;
     private int minutes = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            StopWindSoundOnCollison();
             looseMenu.SetActive(true);
             gameObject.GetComponent<CharacterController>().enabled = false;
             ScoreTimer.instance.CloseTimer();
@@ -26,6 +28,7 @@ public class death : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cheese"))
         {
+            StopWindSoundOnCollison();
             Time = ScoreTimer.instance.StopTimer();
             ScoreTimer.instance.CloseTimer();
             if (Leaderboard.CheckIfHighScore(Time))
@@ -63,5 +66,9 @@ public class death : MonoBehaviour
                 if (minutes > 0) winMenuTime.text = "but you didn't get a highscore.\r\nyou got a time of: " + minutes + ":" + roundedTimer.ToString();
             }
         }
+    }
+    private void StopWindSoundOnCollison()
+    {
+        Wind.Stop();
     }
 }
