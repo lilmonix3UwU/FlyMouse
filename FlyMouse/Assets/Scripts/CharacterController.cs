@@ -3,14 +3,20 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     // ændre momentum til at aftage hurtigere, og gør den exponential.
-    [SerializeField] Vector2 direction;
+    [SerializeField] Vector2 direction, prePosition;
     [SerializeField] KeyCode left = KeyCode.A, right = KeyCode.D;
-    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum, minMomentum;
+    public float gravityTimeToTurnZero, turnspeed, minimalGravityTurnEffect, movementSpeed, momentum, maxMomentum, minMomentum, maxMovement;
+    [SerializeField] float maxPitch, minPitch;
     [SerializeField] GameObject directionFinder;
+    [SerializeField] AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+        maxMovement = maxMomentum * movementSpeed + 1;
     }
 
     // Update is called once per frame
@@ -56,7 +62,14 @@ public class CharacterController : MonoBehaviour
     }
     void Movement()
     {
+        prePosition = transform.position;
         transform.position = (Vector2)transform.position + momentum * movementSpeed * Time.deltaTime * direction + Vector2.down * Mathf.Lerp(0.5f, 1f, Mathf.Abs(direction.y)) * Time.deltaTime;
         momentum = Mathf.Clamp(Mathf.Lerp(0f, 2f, Mathf.Abs(direction.y)) * Time.deltaTime * -direction.y * Mathf.Pow(direction.y, 2) + momentum - Mathf.Lerp(0f, 0.5f, Mathf.Abs(direction.x)) * Time.deltaTime, minMomentum, maxMomentum);
+        SoundPitch();
+    }
+    void SoundPitch()
+    {
+        audioSource.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(transform.position.magnitude - prePosition.magnitude) / (maxMovement * Time.deltaTime));
+        Debug.Log(audioSource.pitch);
     }
 }
