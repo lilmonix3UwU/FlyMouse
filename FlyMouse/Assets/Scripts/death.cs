@@ -27,6 +27,7 @@ public class death : MonoBehaviour
         if (collision.gameObject.CompareTag("Cheese"))
         {
             Time = ScoreTimer.instance.StopTimer();
+            ScoreTimer.instance.CloseTimer();
             if (Leaderboard.CheckIfHighScore(Time))
             {
                 gameObject.GetComponent<Collider2D>().enabled = false;
