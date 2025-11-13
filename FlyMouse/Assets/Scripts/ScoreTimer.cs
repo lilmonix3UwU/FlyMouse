@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScoreTimer : MonoBehaviour
 {
     private float seconds;
+    private float totalSeconds;
     private int minutes;
 
     public static ScoreTimer instance;
@@ -18,6 +19,7 @@ public class ScoreTimer : MonoBehaviour
 
     void Update()
     {
+        
         seconds += Time.deltaTime;
 
         float roundedTimer = Mathf.Round((seconds - 1) * 100) / 100;
@@ -45,7 +47,7 @@ public class ScoreTimer : MonoBehaviour
     }
     public float StopTimer()
     {
-        return seconds - 1;
+        return seconds + (minutes * 60) - 1;
     }
     public void CloseTimer()
     {
