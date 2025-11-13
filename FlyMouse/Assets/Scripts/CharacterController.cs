@@ -70,6 +70,5 @@ public class CharacterController : MonoBehaviour
     void SoundPitch()
     {
         audioSource.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(transform.position.magnitude - prePosition.magnitude) / (maxMovement * Time.deltaTime));
-        Debug.Log(audioSource.pitch);
     }
 }
